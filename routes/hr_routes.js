@@ -1,23 +1,36 @@
-let express=require('express');
-let router=express.Router()
-let {users} =require('../models/users');
-router.get("/viewemp", async (req,res)=>{
+let express = require('express');
+
+let router = express.Router();
+let {users}=require('../models/users');
+
+router.get("/employees",async (req, res) => {
     let result=await users.find();
     res.send(result);
-})
+});
 
-router.post("/assign-task",(req,res)=>{
-    res.send("register route called");
-})
-router.delete("/deleteemp/:id", async (req,res)=>{
-    let result=await users.findByAndDelete(req.params.id):
+router.delete("/deleteemp/:id",async(req,res)=>{
+    let result=await users.findByIdAndDelete(req.params.id);
     if(result){
-        res.send("record deleted success");
+        res.send("employee deleted successfully");
     }
+
+    
 })
 
+router.post("/assign-task", (req, res) => {
+    res.send("assign task page called");
+});
 
-router.get("/viewtask",(req,res)=>{
-    res.send(" updateprofile router called");
-}) 
-module.exports=router;
+router.get("/tasks", (req, res) => {
+    res.send("tasks called");
+});
+
+router.get("/notification", (req, res) => {
+    res.send("notification called");
+});
+
+    let data=req.body;
+    data.password=awit bcrypt.hash(data.password,10);
+    {$set}
+})
+module.exports = router;
