@@ -2,6 +2,13 @@ let express = require('express');
 
 let router = express.Router();
 let {users}=require('../models/users');
+let {task}=require('../models/users');
+
+router.post("/assign-task",async(req,res)=>
+    let data=req.body;
+    let newtask=new task(data);
+    let result=await newtask.save();
+    res.send(result);
 
 router.get("/employees",async (req, res) => {
     let result=await users.find();
